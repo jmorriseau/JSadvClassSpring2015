@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        update on blur:  <input type="text" value="" name="testblur" />
+        <br />
+        Update on Input : <input type="text" value="" name="testinput" />
+        <br />
+        <div></div>
+        <button>Save to Json</button>
+        
+        <script type="text/javascript">
+            
+            var div = document.querySelector('div'),
+                button =  document.querySelector('button'),
+                testblur =  document.querySelector('input[name="testblur"]'),
+                testinput =  document.querySelector('input[name="testinput"]');
+        
+                testinput.addEventListener('input', updateInput);
+                testblur.addEventListener('blur', updateBlur);
+                button.addEventListener('click', saveData);
+                
+            var data = { 
+                "testblur" : '',
+                "testinput" : ''            
+            };
+            
+            function updateInput(e) {
+                div.innerHTML = testinput.value;
+            }
+
+            function updateBlur(e) {
+                div.innerHTML = testblur.value;
+            }
+            
+             function saveData(e) {
+                data.testblur = testblur.value;
+                data.testinput = testinput.value;
+                console.clear();
+                console.log(data);
+            }
+            
+        </script>
+    </body>
+</html>

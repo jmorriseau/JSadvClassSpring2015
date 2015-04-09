@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <script type="text/javascript">
+            
+            var jsonstring = '{ "id": 1, "name": "A green door", "price": 12.50,"tags": ["home", "green"]}';
+    
+            var jsonobject = JSON.parse(jsonstring);
+            
+            // use a for loop to loop inside of a json object
+            for( var x in jsonobject) {
+                console.log( x + ' = ' + jsonobject[x] );
+            }
+            
+            
+            console.log(jsonobject.id);
+            console.log(jsonobject['id']);
+            
+            
+            /*
+{
+  "results": [
+    {
+      "address_components": [
+        {
+          "long_name": "02907",
+          "short_name": "02907",
+          "types": [
+            "postal_code"
+          ]
+        },
+        {
+          "long_name": "Providence",
+          "short_name": "Prov",
+          "types": [
+            "locality",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Providence County",
+          "short_name": "Providence County",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Rhode Island",
+          "short_name": "RI",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ]
+        },
+        {
+          "long_name": "United States",
+          "short_name": "US",
+          "types": [
+            "country",
+            "political"
+          ]
+        }
+      ],
+      "formatted_address": "Providence, RI 02907, USA",
+      "geometry": {
+        "bounds": {
+          "northeast": {
+            "lat": 41.8172,
+            "lng": -71.4073101
+          },
+          "southwest": {
+            "lat": 41.774681,
+            "lng": -71.44145979999999
+          }
+        },
+        "location": {
+          "lat": 41.7956806,
+          "lng": -71.42696789999999
+        },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+          "northeast": {
+            "lat": 41.8172,
+            "lng": -71.4073101
+          },
+          "southwest": {
+            "lat": 41.774681,
+            "lng": -71.44145979999999
+          }
+        }
+      },
+      "place_id": "ChIJdRdK34NP5IkRSwLR4MTE7Vc",
+      "postcode_localities": [
+        "Cranston",
+        "Providence"
+      ],
+      "types": [
+        "postal_code"
+      ]
+    }
+  ],
+  "status": "OK"
+}
+            */
+           
+           var geocode = '{"results":[{"address_components":[{"long_name":"02907","short_name":"02907","types":["postal_code"]},{"long_name":"Providence","short_name":"Prov","types":["locality","political"]},{"long_name":"Providence County","short_name":"Providence County","types":["administrative_area_level_2","political"]},{"long_name":"Rhode Island","short_name":"RI","types":["administrative_area_level_1","political"]},{"long_name":"United States","short_name":"US","types":["country","political"]}],"formatted_address":"Providence, RI 02907, USA","geometry":{"bounds":{"northeast":{"lat":41.8172,"lng":-71.4073101},"southwest":{"lat":41.774681,"lng":-71.44145979999999}},"location":{"lat":41.7956806,"lng":-71.42696789999999},"location_type":"APPROXIMATE","viewport":{"northeast":{"lat":41.8172,"lng":-71.4073101},"southwest":{"lat":41.774681,"lng":-71.44145979999999}}},"place_id":"ChIJdRdK34NP5IkRSwLR4MTE7Vc","postcode_localities":["Cranston","Providence"],"types":["postal_code"]}],"status":"OK"}';
+        
+            var geocodeObject = JSON.parse(geocode);
+            
+            console.log(geocodeObject.results[0].address_components[1].long_name);
+            console.log(geocodeObject.results[0].address_components[3].short_name);
+            
+            
+            // declare variable for length of JSON object
+            var len = geocodeObject.results[0].address_components.length;
+            console.log(len);
+            
+            for(var i = 0; i < len; i++){
+                if (geocodeObject.results[0].address_components[i].types.indexOf('locality') > -1){
+                    console.log(geocodeObject.results[0].address_components[i].long_name);
+                    console.log("This is the city.");
+                }
+                
+                if(geocodeObject.results[0].address_components[i].types.indexOf('administrative_area_level_1') > -1){
+                    console.log(geocodeObject.results[0].address_components[i].short_name);
+                    console.log("This is the state.");
+                }
+                
+                
+            }
+        
+        </script>
+    </body>
+</html>

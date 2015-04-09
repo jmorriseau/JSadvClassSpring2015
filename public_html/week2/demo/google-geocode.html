@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <div id="panel">
+        <input type="text" value="02907" />
+        <input type="button" value="Geocode">
+      </div>
+        
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+        
+        <script>
+            
+            //http://json-schema.org/example1.html
+            //  
+            
+            var geocoder;
+
+            function initialize() {
+              geocoder = new google.maps.Geocoder();
+               document.querySelector('input[type="button"]').addEventListener('click',codeAddress);
+
+            }
+            
+            function codeAddress() {
+                var address = document.querySelector('input[type="text"]').value;
+                geocoder.geocode( { 'address': address}, function(results, status) {
+                  if (status == google.maps.GeocoderStatus.OK) {
+                      console.log(results);
+                  } else {
+                     console.log('Geocode was not successful for the following reason: ' + status);
+                  }
+                });
+              }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+            
+            /*
+             {
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "02907",
+               "short_name" : "02907",
+               "types" : [ "postal_code" ]
+            },
+            {
+               "long_name" : "Providence",
+               "short_name" : "Prov",
+               "types" : [ "locality", "political" ]
+            },
+            {
+               "long_name" : "Providence County",
+               "short_name" : "Providence County",
+               "types" : [ "administrative_area_level_2", "political" ]
+            },
+            {
+               "long_name" : "Rhode Island",
+               "short_name" : "RI",
+               "types" : [ "administrative_area_level_1", "political" ]
+            },
+            {
+               "long_name" : "United States",
+               "short_name" : "US",
+               "types" : [ "country", "political" ]
+            }
+         ],
+         "formatted_address" : "Providence, RI 02907, USA",
+         "geometry" : {
+            "bounds" : {
+               "northeast" : {
+                  "lat" : 41.8172,
+                  "lng" : -71.4073101
+               },
+               "southwest" : {
+                  "lat" : 41.774681,
+                  "lng" : -71.44145979999999
+               }
+            },
+            "location" : {
+               "lat" : 41.7956806,
+               "lng" : -71.42696789999999
+            },
+            "location_type" : "APPROXIMATE",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 41.8172,
+                  "lng" : -71.4073101
+               },
+               "southwest" : {
+                  "lat" : 41.774681,
+                  "lng" : -71.44145979999999
+               }
+            }
+         },
+         "place_id" : "ChIJdRdK34NP5IkRSwLR4MTE7Vc",
+         "postcode_localities" : [ "Cranston", "Providence" ],
+         "types" : [ "postal_code" ]
+      }
+   ],
+   "status" : "OK"
+}
+    
+    
+    
+    
+    
+    {
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "02048",
+               "short_name" : "02048",
+               "types" : [ "postal_code" ]
+            },
+            {
+               "long_name" : "Mansfield",
+               "short_name" : "Mansfield",
+               "types" : [ "locality", "political" ]
+            },
+            {
+               "long_name" : "Massachusetts",
+               "short_name" : "MA",
+               "types" : [ "administrative_area_level_1", "political" ]
+            },
+            {
+               "long_name" : "United States",
+               "short_name" : "US",
+               "types" : [ "country", "political" ]
+            }
+         ],
+         "formatted_address" : "Mansfield, MA 02048, USA",
+         "geometry" : {
+            "bounds" : {
+               "northeast" : {
+                  "lat" : 42.061161,
+                  "lng" : -71.15870410000001
+               },
+               "southwest" : {
+                  "lat" : 41.96946510000001,
+                  "lng" : -71.28372
+               }
+            },
+            "location" : {
+               "lat" : 42.00925840000001,
+               "lng" : -71.2280234
+            },
+            "location_type" : "APPROXIMATE",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 42.061161,
+                  "lng" : -71.15870410000001
+               },
+               "southwest" : {
+                  "lat" : 41.96946510000001,
+                  "lng" : -71.28372
+               }
+            }
+         },
+         "place_id" : "ChIJLavSCz9i5IkRDpvnidbmNSs",
+         "types" : [ "postal_code" ]
+      }
+   ],
+   "status" : "OK"
+}
+             
+             
+             
+             
+             */
+        </script>
+    </body>
+</html>

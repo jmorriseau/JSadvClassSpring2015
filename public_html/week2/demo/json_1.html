@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+        
+        <script type="text/javascript">
+          
+            var json = {};
+            
+            json.hello = 'hello world';
+            json.isvalid = true;
+            json.num = 10;
+            json.logme = function(msg) {
+                console.log(msg);
+            };
+            
+            json.logme(json.hello);
+             
+             
+    console.log(json.hasOwnProperty('valueOf'));
+    
+    
+    var jsonstring = '{ "id": 1, "name": "A green door", "price": 12.50,"tags": ["home", "green"]}';
+    
+    console.log(JSON.parse(jsonstring));
+    
+    console.log(JSON.stringify(json));
+    
+    /*
+    JSON.stringify(); // takes a JS Object and turns it into a string
+    JSON.parse(); // takes a JSON string and turns it into a JS Object
+    */   
+        </script>
+    </body>
+</html>

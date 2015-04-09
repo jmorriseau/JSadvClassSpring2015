@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            
+            /* This is our style for the invalid fields */
+            input:invalid{
+              border-color: #900;
+              background-color: #FDD;
+            }
+
+            input:focus:invalid {
+              outline: none;
+            }
+        </style>
+    </head>
+    <body>
+        
+         <form action="#" method="post"> 
+             <p>
+                Date: <input type="date" name="date" required="required" />
+             </p>
+             <p>
+                Email: <input type="email" name="email" required="required" />
+            </p>
+       
+            <p>
+                <input type="submit" name="submit" value="Submit" />
+            </p>  
+         </form>
+        <script type="text/javascript">
+            //https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation 
+            
+            var form = document.querySelector('form');
+            var submitBtn = document.querySelector('input[type="submit"]');
+            
+            var email = document.querySelector('input[name="email"]');
+
+            form.addEventListener('submit', checkForm);
+            submitBtn.addEventListener('click', checkForm);
+
+            function checkForm(e) {
+                e.preventDefault();
+
+                console.log(email.checkValidity());
+
+            }
+            
+            
+            
+            email.addEventListener('input', function() {
+                
+            });
+            
+            
+            
+            
+            
+            
+        </script>
+        
+    </body>
+</html>
