@@ -24,7 +24,7 @@ function checkForm(e) {
         var input = fields[i].querySelector('input');
         var label = fields[i].querySelector('label');
        
-        html += '<p>' + label.innerText + " " + input.value + '</p>';
+        html += '<p>' + label.innerText + ": " + input.value + '</p>';
         
         jsondata[input.name] = input.value;
 
