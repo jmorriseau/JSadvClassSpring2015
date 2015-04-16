@@ -5,9 +5,9 @@
  */
 
 
-var form = document.querySelector('form');
+var form = $('form');
 
-form.addEventListener('submit', checkForm);
+form.on('submit', checkForm);
 
 function checkForm(e) {
     e.preventDefault();
@@ -31,13 +31,6 @@ function checkForm(e) {
     else {
        fnameError.removeClass('error');        
     }
-    
-    //if ( fname.value === '' ) {
-    //  fnameError.add('error');
-    //   isValid = false;
-   // } else {
-   //    fnameError.remove('error');
-  //  }
   
     if(lname.val() === '')
     {
@@ -47,13 +40,6 @@ function checkForm(e) {
     else {
         lnameError.removeClass('error');
     }
-    
-    //if ( lname.value === '' ) {
-     //  lnameError.add('error');
-    //   isValid = false;
-   // } else {
-   //   lnameError.remove('error');
-   // }
    
     if(email.val() === '') {
         emailError.addClass('error');
@@ -71,11 +57,9 @@ function checkForm(e) {
     else {
         phoneError.removeClass('error');
     }
-    
-    
-    
+  
     if (isValid){
-        form.classList.add('hide');
+        form.addClass('hide');
         var confirmation = $('#confirmation');
         
         var html = '<p>First Name: ' + fname.val() + '</p>';
@@ -83,7 +67,7 @@ function checkForm(e) {
             html += '<p>Email: ' + email.val() + '</p>';
             html += '<p>Phone: ' + phone.val() + '</p>';
             
-        confirmation.innerHTML = html;    
+        confirmation.html(html);    
             
     }
     
