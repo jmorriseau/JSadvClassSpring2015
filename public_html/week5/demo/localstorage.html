@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <div>TODO write content</div>
+        
+        <script type="text/javascript">
+            // https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage#localStorage
+            var data = {
+                "mouseX" : [123,44,556,775,443,223,434,54,456],
+                "email" : 'email@email.com'
+            };
+            
+            localStorage.setItem('data', JSON.stringify(data) );
+            
+            var savedData = localStorage.getItem('data');
+            
+            console.log(savedData);
+            console.log(JSON.parse(savedData));
+            
+            
+        </script>
+    </body>
+</html>

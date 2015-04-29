@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+        
+        <script>
+            
+            var data = [];
+            
+            data.push({"name":'hello1', "phone": '401-555-6667'});
+            data.push({"name":'hello2', "phone": '401-555-6668'});
+            data.push({"name":'hello3', "phone": '401-555-6669'});
+            data.push({"name":'hello4', "phone": '401-555-6660'});
+            
+            var dataString = JSON.stringify(data);
+            console.log(dataString);
+            localStorage.setItem('test', dataString);
+            
+            
+            var localData = localStorage.getItem('test');
+            
+            var dataObj = JSON.parse(localData);
+            console.log(dataObj);
+            
+            
+            var storageData = ( typeof(localStorage.getItem('data')) === 'string' ? localStorage.getItem('data') : '' );
+            
+            console.log(typeof localStorage.getItem('data'));
+            
+        </script>
+        
+    </body>
+</html>

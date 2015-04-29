@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+        
+        
+        <script type="text/javascript">
+            
+            
+            /*
+            localStorage.clear();
+            localStorage.setItem();
+            localStorage.getItem();
+            localStorage.removeItem();
+            */
+           
+           localStorage.setItem("test", "hello world");
+            
+            
+            var test = localStorage.getItem("test");
+            
+            document.querySelector('div').innerHTML = test;
+            
+            console.log(localStorage.getItem('test2'));
+            console.log(localStorage.removeItem('test2'));
+            
+            
+            localStorage.setItem("test2", "hello world2");
+            localStorage.removeItem('test2')
+            var test2 = localStorage.getItem('test2');
+            
+            //localStorage.clear();
+            if(test2)
+            {
+             console.log('test2 has a value');    
+            }
+            else {
+                console.log('test2 has no value');
+            }
+         
+    
+    
+    
+        </script>
+            
+    </body>
+</html>
