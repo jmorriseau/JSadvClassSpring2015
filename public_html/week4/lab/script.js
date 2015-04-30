@@ -5,20 +5,21 @@
  */
 
 
-var form = $('form');
+var form = document.querySelector('form');
 var geocoder;
 
-form.on("submit", checkForm);
+form.addEventListener('submit', checkForm);
 
 function checkForm(e) {
     e.preventDefault();
 
     var isValid = true;
-    var fields = $('form p');
+    var fields = document.querySelectorAll('form p');
     var fieldlen = fields.length;
 
     var jsondata = {};
     var html = "";
+    
     var regexValidations = {
         "fname": /^[a-zA-Z]+$/,
         "lname": /^[a-zA-Z]+$/,
@@ -29,9 +30,9 @@ function checkForm(e) {
         "city": /.*/,
         "state": /^[A-Z]{2}$/,
         "zip":  /^\d{5}(?:[-\s]\d{4})?$/,
-        "username":  /^$/,
-        "password":  /^$/,
-        "confirmPassword": /^$/
+        "username":  /^[a-zA-Z]+$/,
+        "password":  /^[a-zA-Z]+$/,
+        "confirmPassword": /^[a-zA-Z]+$/
     };
 
     for (var i = 0; i < fieldlen; i++) {
@@ -41,69 +42,51 @@ function checkForm(e) {
         html += '<p>' + label.innerText + ": " + input.value + '</p>';
         
         jsondata[input.name] = input.value;
-        
+
         if(input.name === "address_two" && input.value === "")
-        {
-            $(fields[i]).removeClass('error');
-            continue;
-        }
+                {
+                    fields[i].classList.remove('error');
+                    continue;
+                }
         
         if (input.value === '' || !regexValidations[input.name].test(input.value)) {
-            $(fields[i]).addClass('error');
+            fields[i].classList.add('error');
             isValid = false;
         } else {
-            $(fields[i]).removeClass('error');
+            fields[i].classList.remove('error');
         }
 
     }
-    //console.log(jsondata);
+    
 
     if (jsondata.password !== jsondata.confirmPassword) {
-        $('.passwordError').addClass('error');
-        $('.confirmPasswordError').addClass('error');
+        document.querySelector('.passwordError').classList.add('error');
+        document.querySelector('.confirmPasswordError').classList.add('error');
 
         isValid = false;
     }
 
 
     if (isValid) {
-        form.addClass('hide');
-        var confirmation = $('#confirmation');
-        
-        
-        
-//        var html = '<p>First Name: ' + jsondata.fname + '</p>';
-//        html += '<p>Last Name: ' + jsondata.lname + '</p>';
-//        html += '<p>Email: ' + jsondata.email + '</p>';
-//        html += '<p>Phone: ' + jsondata.phone + '</p>';
-//        html += '<p>Address Line 1: ' + jsondata.address_one + '</p>';
-//        html += '<p>Address Line 2: ' + jsondata.address_two + '</p>';
-//        html += '<p>City: ' + jsondata.city + '</p>';
-//        html += '<p>State: ' + jsondata.state + '</p>';
-//        html += '<p>Postal Code: ' + jsondata.zip + '</p>';
-//        html += '<p>Username: ' + jsondata.username + '</p>';
-//        html += '<p>Password: ' + jsondata.password + '</p>';
-//        html += '<p>Confirmed Password: ' + jsondata.confirmPassword + '</p>';
-//
-       confirmation.html(html);
+        console.log(jsondata);
+        form.classList.add('hide');
+        var confirmation = document.querySelector('#confirmation');       
+        confirmation.innerHTML = html;
 
     }
 
 
 }
-
-        // don't mess with the google stuff
 function initialize() {
     geocoder = new google.maps.Geocoder();
-    var zipCode = $('input[name="zip"]');
-    zipCode.on("blur", codeAddress);
-    //zipCode.addEventListener("blur", codeAddress);
+    var zipCode = document.querySelector('input[name="zip"]');
+    zipCode.addEventListener("blur", codeAddress);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
 function codeAddress() {
-    var address = $('input[name="zip"]').val();
+    var address = document.querySelector('input[name="zip"]').value;
     geocoder.geocode({'address': address}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             console.log(results);

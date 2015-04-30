@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Phone Regex Demo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+       
+        <h3>Enter US Phone</h3>
+        <input name="phone" type="text" value="" placeholder="xxx-xxx-xxxx" />
+        
+        <h3>Enter your Email</h3>
+        <input name="email" type="email" value="" placeholder="xxxx@xxxx.xx" />
+        
+        <input type="button" value="Check" />
+        
+        <script type="text/javascript">
+        
+            
+            var inputs = document.querySelectorAll('input:not([type="button"])');
+            
+            /*
+             * Make sure "phone" and "email" match the name if the input field
+             * 
+             */
+            var regexValidations = {
+                "phone" : {
+                    "regex" : /^\(?([2-9]{1}[0-9]{2})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+                    "message" : 'Phone number is not valid'
+                    
+                },
+                "email" : {
+                    "regex" : /^[a-zA-Z0-9$]+[@]{1}[a-zA-Z]+[\.]{1}[a-zA-Z]{2,3}$/,
+                    "message" : 'Email is not in a valid format'
+                }
+            };
+            
+            /*
+             * 
+             * Optional way
+             
+                var regexValidations = {
+                   "phone" :  /^\(?([2-9]{1}[0-9]{2})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,                   
+                   "email" :  /^[a-zA-Z0-9$]+[@]{1}[a-zA-Z]+[\.]{1}[a-zA-Z]{2,3}$/
+               };
+
+               if ( regexValidations.[input.name].test(input.value) )
+            */
+            
+            document.querySelector('input[type="button"]').addEventListener('click', checkForm3);
+            
+            /*
+             * So with this first function you can have a JSON data with your regex list
+             * 
+             * while looping through the fields you can use the name of the input field to 
+             * match it with the validation regex.
+             * 
+             * input[i].name is equal to "phone" we match it with regexValidations["phone"]
+             * and access the "regex" key we created
+             * 
+             * regexValidations["phone"].regex (access to regex object)
+             * 
+             * or
+             * 
+             * regexValidations[input[i].name].regex
+             * 
+             * once we have the regex object we validate the input value
+             * 
+             * inputs[i].value
+             * 
+             * We need to use the "test()" function for regex
+             * 
+             * regexValidations[input[i].name].regex.test()
+             * 
+             * used in the if statement
+             * 
+             * regexValidations[input[i].name].regex.test(inputs[i].value)
+             * 
+             * "test()" will return true or false if the string matches the regular expression
+             *  
+             *  if ( !regexValidations[input[i].name].regex.test(inputs[i].value) )  = (if not test then error)
+             * 
+             */
+            function checkForm() {
+                 
+                for ( var i = 0, l = inputs.length; i < l; i++ ) {
+
+                    if ( inputs[i].value === '' || !regexValidations[inputs[i].name].regex.test(inputs[i].value) ){
+                        console.log(regexValidations[inputs[i].name].message);
+                    } else {
+                        console.log(inputs[i].name + ' valid');
+                    }
+                }
+            }
+            
+            /*
+             * same as above but we grab the regex validation object and put it in the variable regexSel
+             * 
+             */
+            function checkForm2() {
+                 
+                for ( var i = 0, l = inputs.length; i < l; i++ ) {
+
+                    var regexSel = regexValidations[inputs[i].name];
+                    
+                    if ( inputs[i].value === '' || !regexSel.regex.test(inputs[i].value) ){
+                        console.log(regexValidations[inputs[i].name].message);
+                    } else {
+                        console.log(inputs[i].name + ' valid');
+                    }
+                }
+            }
+            
+            
+            /*
+             * is this example we collect all the values into the data JSON
+             * 
+             * Afterwards we use the regex validation knowing the keys and 
+             * add the validation
+             */
+            function checkForm3() {
+                 var data = {};
+                 
+                for ( var i = 0, l = inputs.length; i < l; i++ ) {
+
+                    data[inputs[i].name] = inputs[i].value;                    
+                    
+                }
+                
+                
+                if ( !regexValidations.phone.regex.test(data.phone) ) {
+                    console.log(regexValidations.phone.message);
+                }
+                
+                 if ( !regexValidations.email.regex.test(data.email) ) {
+                    console.log(regexValidations.email.message);
+                }
+                
+            }
+            
+            
+            /*
+             * This is the simple solution where after the loop, we declare each regex needed
+             * and use the test function to check if the data value passes the regex test.
+             */
+            
+            function checkForm4() {
+                 var data = {};
+                 
+                for ( var i = 0, l = inputs.length; i < l; i++ ) {
+
+                    data[inputs[i].name] = inputs[i].value;                    
+                    
+                }
+                
+                var phoneRegex = /^\(?([2-9]{1}[0-9]{2})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+                
+                if ( !phoneRegex.test(data.phone) ) {
+                    console.log('Phone number is not valid');
+                }
+                
+                var emailRegex = /^[a-zA-Z0-9$]+[@]{1}[a-zA-Z]+[\.]{1}[a-zA-Z]{2,3}$/;
+                
+                if ( !emailRegex.test(data.email) ) {
+                    console.log('Email is not in a valid format');
+                }
+                
+            }
+            
+            
+       
+        
+        </script>
+            
+        
+    </body>
+</html>

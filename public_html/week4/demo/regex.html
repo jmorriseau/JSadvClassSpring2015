@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <div>TODO write content</div>
+        
+        <input name="email" id="email" />
+        <button id="test">Test </button>
+        
+        <script type="text/javascript">
+            
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+            var reg1 = /[a-z]/;
+            var reg2 = new RegExp("[a-z]");
+            
+            var emailRegex = /^[a-zA-Z0-9$]+[@]{1}[a-zA-Z]+[\.]{1}[a-zA-Z]{2,3}$/;
+            
+            
+            if ( emailRegex.test('test@test.com') ) {
+                console.log('test@test.com is a valid email');
+            } else {
+                console.log('test@test.com is NOT valid email');
+            }
+            
+            function demoMatch() {
+                var email = document.getElementById('email');
+                    
+            
+                    if ( emailRegex.test(email.value) ){
+                        console.log(email.value+' is valid');
+                    } else {
+                        console.log(email.value+' is Not valid');
+                    }
+                
+            }
+            
+            document.getElementById('test').addEventListener('click', demoMatch);
+            
+                        
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Regex and Strings - Week 5 Lab </title>
+		
+	</head>
+	<body>
+
+	
+	<form name="mainform">
+	
+		<textarea id="comments" name="comment" cols="50" rows="15"> <strong>This is a test</strong> <script> alert("I hacked you")</script></textarea>
+		<br /><input type="button" value="Click me" onclick="submitform();" />
+	</form>
+	
+	
+		<script>
+			/*
+				at the end of a regex object, adding a g or an i will help with the replace
+				g is for gobal, so it finds all not just one
+				i is for case senitive			
+			*/
+			
+			function strip_HTML(str) {
+				var findHtml = /<(.|\n)*?>/gi;
+				return str.replace(findHtml,"");
+			}
+			
+			
+			function submitform() {
+			
+				var comments = document.getElementById('comments');
+			
+				comments.value = strip_HTML(comments.value);
+			
+			}
+			
+			
+			
+		</script>
+		
+	</body>
+</html>
