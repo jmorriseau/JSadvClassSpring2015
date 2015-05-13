@@ -29,9 +29,9 @@ function checkForm(e) {
         "city": /.*/,
         "state": /^[A-Z]{2}$/,
         "zip":  /^\d{5}(?:[-\s]\d{4})?$/,
-        "username":  /^$/,
-        "password":  /^$/,
-        "confirmPassword": /^$/
+        "username":  /^[a-zA-Z0-9_-]{4,13}$/,
+        "password":   /[a-zA-Z0-9!@#$%^]{6,}/,
+        "confirmPassword":  /[a-zA-Z0-9!@#$%^]{6,}/
     };
 
     for (var i = 0; i < fieldlen; i++) {
