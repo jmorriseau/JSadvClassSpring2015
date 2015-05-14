@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            #map-canvas {
+                width: 500px;
+                height: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map-canvas"></div>
+        
+        <button id="clearMap">Clear Map</button>
+        <button id="markMap">Set Markers</button>
+        
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+        <script type="text/javascript">
+            // http://www.latlong.net/
+            var locations = [           
+                {"lat": 41.632573, "lng": -71.496148},
+                {"lat": 41.620768, "lng": -71.495547},
+                {"lat": 41.637384, "lng": -71.4483201},
+                {"lat": 41.626478, "lng": -71.471601},
+                {"lat": 41.621538, "lng": -71.489453}              
+            ];
+              
+              
+            var map, markers = [];
+              
+              
+            function initialize() {
+                
+            
+                
+              var mapOptions = {
+                zoom: 17,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.SATELLITE,
+                streetViewControl : false,
+                mapTypeControl : false,
+                zoomControlOptions : {
+                    position : google.maps.ControlPosition.RIGHT_BOTTOM
+                }
+              };
+              map = new google.maps.Map(document.querySelector('#map-canvas'),
+                  mapOptions);
+                  
+                  
+                for ( var i = 0, l = locations.length; i < l; i++ ) {
+                    var myLatlng = new google.maps.LatLng(locations[i].lat, locations[i].lng);
+                    var marker = new google.maps.Marker({
+                          position: myLatlng,
+                          map: map
+                      });
+                      markers.push(marker);
+                }  
+                
+                panMap();
+                  
+            }
+            
+            function panMap() {
+                var latlngBounds = new google.maps.LatLngBounds();
+                for ( var i = 0, l = markers.length; i < l; i++ ) {
+                    latlngBounds.extend(markers[i].getPosition());                    
+                }
+                map.setCenter(latlngBounds.getCenter());
+                
+                if ( markers.length === 1 ) {
+                    map.setZoom(17);
+                } else {
+                    map.fitBounds(latlngBounds);
+                }
+            }
+            
+            
+            function clearMap() {
+                 for ( var i = 0, l = markers.length; i < l; i++ ) {
+                    markers[i].setMap(null);                    
+                }
+            }
+            
+            function markMap() {
+                 for ( var i = 0, l = markers.length; i < l; i++ ) {
+                    markers[i].setMap(map);                    
+                }
+                panMap();
+            }
+              
+            google.maps.event.addDomListener(window, 'load', initialize);
+          
+          
+           document.querySelector('#clearMap').addEventListener('click', clearMap);
+           document.querySelector('#markMap').addEventListener('click', markMap);
+          
+        </script>
+    </body>
+</html>

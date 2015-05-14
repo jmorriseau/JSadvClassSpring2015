@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+         Location 1 : <input type="text" name="location1" placeholder="city, state and/or zip" />
+         <br />
+         <br />
+         Location 2 : <input type="text" name="location2" placeholder="city, state and/or zip" />
+        <br />
+         <br />
+         
+        Distance <span class="distance"></span>
+        Duration: <span class="duration"></span>
+        <br />
+        
+        <button>Distance</button>
+        
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+        <script type="text/javascript">
+            
+            var input1 = document.querySelector('input[name="location1"]');
+            var input2 = document.querySelector('input[name="location2"]');
+            
+            var autocomplete1 = new google.maps.places.Autocomplete(input1);
+            var autocomplete2 = new google.maps.places.Autocomplete(input2);
+             
+            var location1 = '', location2 = '', distance;
+             
+            google.maps.event.addListener(autocomplete1, 'place_changed', function() {
+                 location1 = mapAddress(autocomplete1.getPlace()).formatted_address;                
+            });
+            
+            
+            google.maps.event.addListener(autocomplete2, 'place_changed', function() {
+                 location2 = mapAddress(autocomplete2.getPlace()).formatted_address;                
+            });
+                        
+            
+            document.querySelector('button').addEventListener('click', function(){
+                if ( location1.length && location2.length ) {
+                    getDistance(location1, location2, distanceCalled );
+                }
+            });
+            
+            
+            
+            
+            
+            
+            function getDistance(origin, destination, callback ) {
+                var service = new google.maps.DistanceMatrixService();
+                
+                var options = {
+                    "origins" : [origin],
+                    "destinations" : [destination],
+                    "travelMode" : google.maps.TravelMode.DRIVING,
+                    "unitSystem" : google.maps.UnitSystem.IMPERIAL,
+                    "avoidHighways" : false,
+                    "avoidTolls" : false
+                }
+                
+                service.getDistanceMatrix(options,callback);
+            }
+            
+            function distanceCalled(response, status) {
+                if ( status === google.maps.DistanceMatrixStatus.OK ) {
+                    distance = distanceMapper(response);
+                    console.log(distance);
+                    document.querySelector('.distance').innerHTML = distance.distance;
+                    document.querySelector('.duration').innerHTML = distance.duration;
+                    
+                }
+            }
+            
+            
+            
+    
+    
+             function mapAddress(place) {
+                 console.log(place);
+                 var results = {
+                     "formatted_address" : '',
+                     "zip_code" : '',
+                     "city" : '',
+                     "state_short" : '',
+                     "sate_long" : '',
+                     "country_short" : '',
+                     "country_long" : ''
+                 };
+                 
+                 
+                 if ( place.hasOwnProperty('formatted_address') ) {
+                     results.formatted_address = place.formatted_address;
+                 }
+                 
+                 if ( place.hasOwnProperty('address_componets') ) {
+                     
+                     var i = place.address_componets.length;
+                     
+                     while ( i-- ) {
+                         
+                     }
+                     
+                 }
+                 
+                return results; 
+             }
+             
+             
+             
+             function distanceMapper(distance) {
+                 
+                 var results = {
+                     "distance" : '',
+                     "duration" : ''
+                 };
+                 
+                 
+                 if ( distance.hasOwnProperty('rows') && distance.rows.length 
+                         && distance.rows[0].hasOwnProperty('elements') && distance.rows[0].elements.length ) {
+                     
+                     var element = distance.rows[0].elements[0];
+                     
+                     if ( element.hasOwnProperty('distance') ) {
+                         results.distance = element.distance.text;
+                     }
+                     
+                     if ( element.hasOwnProperty('duration') ) {
+                         results.duration = element.duration.text;
+                     }
+                 }
+                 
+                 
+                 return results;
+             }
+             
+        </script>
+        
+        
+        
+    </body>
+</html>

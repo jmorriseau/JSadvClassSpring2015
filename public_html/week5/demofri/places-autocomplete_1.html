@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        Location : <input type="text" name="location" placeholder="city, state and/or zip" />
+        
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+        
+        <script type="text/javascript">
+            
+            var input = document.querySelector('input[name="location"]');
+            
+             var autocomplete = new google.maps.places.Autocomplete(input);
+             
+             
+             google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                 var place = autocomplete.getPlace();
+                 console.log(place);
+             });
+                        
+             
+             function mapAddress(place) {
+                 
+                 var results = {
+                     "formatted_address" : '',
+                     "zip_code" : '',
+                     "city" : '',
+                     "state_short" : '',
+                     "sate_long" : '',
+                     "country_short" : '',
+                     "country_long" : ''
+                 }
+                 
+                 
+                 if ( place.hasOwnProperty('formatted_address') ) {
+                     results.formatted_address = place.formatted_address;
+                 }
+                 
+                 if ( place.hasOwnProperty('address_componets') ) {
+                     
+                     var i = place.address_componets.length;
+                     
+                     while ( i-- ) {
+                         
+                     }
+                     
+                 }
+                 
+                 
+             }
+             
+        </script>
+
+    </body>
+</html>
