@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <h1>TODO write content</h1>
+        
+        <script type="text/javascript">
+             /*
+             
+                setTimeout
+                    executes a function, once, after waiting a specified number of milliseconds
+                setInterval
+                    executes a function, over and over again, at specified time intervals
+                clearTimeout
+                    Used to stop the execution of setTimeout
+                clearInterval
+                    Used to stop the execution of setInterval
+                    These timers are part of the window object.
+
+             */
+            
+            var h1 = document.querySelector('h1');
+            var colorNum = 0;
+            var colortimer =  setTimeout(updateColor, 100);
+            function updateColor() {
+
+                // rgb( 0,0,0 )
+                //document.body.style.backgroundColor
+                h1.style.color = 'rgb('+colorNum + ',' + (colorNum+10) + ',' + (colorNum+20) + ')'; ;
+                  //style.background-color - incorrect CSS styles in JS are camelcase
+                  //style.backgroundColor - correct
+                  colorNum += 10;
+
+                  if ( colorNum <= 235 ) {
+                    setTimeout(updateColor, 100);
+                  } else {
+                      clearTimeout(colortimer);
+                  }
+
+              } 
+            
+            </script>
+    </body>
+</html>

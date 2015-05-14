@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <style>
+            #test {
+                border: 50px solid black;
+                width: 200px;
+                height: 200px;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="test">TODO write content</div>
+        <button id="borderBtn"> Change Border </button>
+        
+        <script type="text/javascript">
+            /* use border Radius to update the #test border until it 
+             * reaches to 100px 
+             * 
+             * Add the function even handler to the #borderBtn to
+             * start the function
+             * 
+             * */
+            
+            var div = document.querySelector('#test');
+            var btn = document.querySelector('#borderBtn');
+            btn.addEventListener('click', startUpdate);
+            
+            var borderSize = 1;
+            var borderTimer;
+            var speed = 100;
+            
+            function updateBorder() {
+                borderSize++;
+                div.style.borderRadius = borderSize + 'px';
+                if ( borderSize > 100 ) {
+                    clearInterval(borderTimer);
+                }
+            }
+            
+            function startUpdate() {
+                borderTimer = setInterval(updateBorder, speed);
+            }
+            
+                        
+        </script>
+        
+    </body>
+</html>

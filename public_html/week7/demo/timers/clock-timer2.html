@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <div id="clock">TODO write content</div>
+        <button id="stopclock">Stop Clock </button>
+        <button id="startclock">Start Clock </button>
+        <script type="text/javascript">
+            
+            var clock = document.querySelector('#clock');
+            var clockTimer = setInterval(updateClock, 1000);
+            
+            var stopclock = document.querySelector('#stopclock');            
+            stopclock.addEventListener('click', stopClock);
+            
+            var startclock = document.querySelector('#startclock');            
+            startclock.addEventListener('click', startClock);
+            
+            function updateClock() {
+                var newdate = new Date();
+                clock.innerHTML = newdate;                
+            }
+            
+            function stopClock() {
+                clearInterval(clockTimer);
+            }
+            
+            function startClock() {
+                clockTimer = setInterval(updateClock, 1000);
+            }
+            
+            
+            
+            
+        </script>
+        
+    </body>
+</html>

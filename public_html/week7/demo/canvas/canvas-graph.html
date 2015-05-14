@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bar Graph</title>
+  <style>
+	canvas {
+		border: 1px solid black;
+	}
+  </style>
+</head>
+<body>
+
+    <div align="center">
+
+        <h2>Chart Sample</h2>
+
+        <canvas id="can" height="400" width="650">
+
+        </canvas>
+
+    </div>
+
+	
+	
+	  <script type="text/javascript">
+			
+		//https://developer.apple.com/library/safari/documentation/AudioVideo/Conceptual/HTML-canvas-guide/DrawingLinesandShapes/DrawingLinesandShapes.html#//apple_ref/doc/uid/TP40010542-CH3-SW1
+		
+		var can = document.querySelector('canvas'),
+			ctx = can.getContext("2d");
+
+            function draw() {
+                        //ctx.save();
+			ctx.shadowOffsetX = 2;
+			ctx.shadowColor = "black";
+			ctx.shadowOffsetY = 2;
+			ctx.shadowBlur=10;
+			
+			ctx.strokeStyle = "black";
+			ctx.lineJoin = "square";
+			ctx.lineCap = "square";
+			ctx.lineWidth = 1;
+			
+			// lines
+			ctx.beginPath();
+			ctx.moveTo(100, 0); //x, y
+			ctx.lineTo(100, can.height-40);						
+			ctx.lineTo(can.width, can.height-40);
+			
+			for ( var i = 40; i < 500; i += 40 ) {
+				ctx.moveTo(100, i); //x, y
+				ctx.lineTo(can.width, i);
+			
+			}
+			ctx.stroke();
+			//ctx.restore();
+					
+			
+			
+			ctx.fillStyle = "blue";
+			ctx.font = "16pt Helvetica";
+			ctx.fillText("Ford", 150, can.height-10);
+			
+			//ctx.fillStyle = "blue";
+			//ctx.fillRect(150, 100, 50, can.height-140);  // x, y, width, height
+			
+			
+			ctx.fillStyle = "red";
+			ctx.font = "16pt Helvetica";
+			ctx.fillText("Honda", 250, can.height-10);
+			
+			//ctx.fillStyle = "red";
+			//ctx.fillRect(250, 250, 50, can.height-290);  // x, y, width, height
+			
+			ctx.fillStyle = "green";
+			ctx.font = "16pt Helvetica";
+			ctx.fillText("Toyota", 350, can.height-10);
+			
+			ctx.fillStyle = "green";
+			ctx.fillRect(350, 150, 50, can.height-190);  // x, y, width, height
+			                      
+                       
+                        var startYScore = 40;
+                       
+                       
+                       ctx.fillStyle = "black";
+                       ctx.font = "16pt Helvetica";
+                       
+                       for ( var score = 100 ; score >= 20; score -= 10) {
+                           
+                            ctx.fillText(score, 10, startYScore);
+                            startYScore += 40;
+                       }
+                        
+			
+			/*
+			ctx.fillStyle = "black";
+			ctx.font = "16pt Helvetica";
+			ctx.fillText("90", 10, 80);
+			
+			ctx.fillStyle = "black";
+			ctx.font = "16pt Helvetica";
+			ctx.fillText("80", 10, 120);
+			
+			ctx.fillStyle = "black";
+			ctx.font = "16pt Helvetica";
+			ctx.fillText("70", 10, 160);
+			
+			ctx.fillStyle = "black";
+			ctx.font = "16pt Helvetica";
+			ctx.fillText("60", 10, 200);
+			
+			ctx.fillStyle = "black";
+			ctx.font = "16pt Helvetica";
+			ctx.fillText("50", 10, 240);
+			
+			ctx.fillStyle = "black";
+			ctx.font = "16pt Helvetica";
+			ctx.fillText("40", 10, 280);
+			
+			ctx.fillStyle = "black";
+			ctx.font = "16pt Helvetica";
+			ctx.fillText("30", 10, 320);
+						
+			ctx.fillStyle = "black";
+			ctx.font = "16pt Helvetica";
+			ctx.fillText("20", 10, 360);
+			
+			
+			*/
+			
+            }
+		
+		function drawLines() {
+		
+			ctx.strokeStyle = "orange";
+			ctx.lineJoin = "square";
+			ctx.lineCap = "round";
+			ctx.lineWidth = 5;
+			
+			ctx.beginPath();
+
+			ctx.moveTo(175, 100);
+
+			ctx.lineTo(275, 250);
+			ctx.lineTo(375, 150);
+			ctx.lineTo(475, can.height-40);
+			
+			ctx.stroke();
+		
+		}
+		
+		
+		var bluey = 300,
+                    blueheight = can.height-340,
+                    redy = 350,
+                    redheight = can.height-390,
+                    interval = setInterval(drawSteps, 100);
+		
+		function drawSteps() {
+			
+			if (  bluey <= 90 &&  redy <= 250 ) {
+				clearInterval(interval);
+				drawLines(); //callback, animations are done;
+			} else {
+				ctx.clearRect(0, 0, can.width, can.height);
+				draw();
+				
+				if ( bluey > 90 ) {
+
+					ctx.fillStyle = "blue";
+					ctx.fillRect(150, bluey, 50, blueheight);  // x, y, width, height
+					bluey -= 10;
+					blueheight += 10;
+				} else {
+					ctx.fillStyle = "blue";
+					ctx.fillRect(150, bluey, 50, blueheight);
+				}
+				
+				if ( redy > 250 ) {
+					ctx.fillStyle = "red";
+					ctx.fillRect(250, redy, 50, redheight);  // x, y, width, height
+					redy -= 10;
+					redheight += 10;
+				} else {
+					ctx.fillStyle = "red";
+					ctx.fillRect(250, redy, 50, redheight); 
+				}
+				
+			}
+			
+		}
+		
+		
+		
+
+    </script>
+</body>
+
+</html>
