@@ -31,3 +31,13 @@ btnHide.addEventListener('click', hide);
 
 
 btnShow.addEventListener('click', show);
+
+
+
+var i = 10;
+
+while ( i-- ) {
+
+console.log(i);
+
+}
