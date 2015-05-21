@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lab 8</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <style type="text/css">
+            canvas {
+                border: 1px solid black;
+            }
+            .hide {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="race" width="750" height="150"></canvas>
+
+        <br />
+        <button id="play" class="hide">Play</button>
+
+        <script type="text/javascript">
+
+
+            var can = document.querySelector('#race');
+            var ctx = can.getContext('2d');
+            var play =  document.querySelector('#play');
+
+
+            function drawClear() {
+                ctx.clearRect(0, 0, can.width, can.height);
+            }
+
+            var width = 30,
+                    height = 30,
+                    bluex = 0,
+                    bluey = 20,
+                    canvasRight = (can.width - width - 50),
+                    redx = 0,
+                    redy = 100,
+                    max = 20,
+                    linex = 700,
+                    liney = 0,
+                    blueWinner = false,
+                    redWinner = false;
+
+            window.addEventListener('load', Race);
+            play.addEventListener('click', Reset);
+
+            function moveBlue() {
+                if (bluex < canvasRight) {
+                    bluex += randNum(max);
+                    ctx.fillStyle = "#0000FF";
+                    ctx.fillRect(bluex, bluey, width, height); // x, y, width, height                    
+                }
+                else {
+                    blueWinner = true;
+                }
+            }
+
+            function moveRed() {
+                if (redx < canvasRight) {
+                    redx += randNum(max);
+                    ctx.fillStyle = "#FF0000";
+                    ctx.fillRect(redx, redy, width, height); // x, y, width, height                  
+                }
+                else {
+                    redWinner = true;
+                }
+            }
+
+            function drawLine() {
+                ctx.fillStyle = "#800080";
+                ctx.fillRect(linex, liney, 5, 150);
+            }
+
+            function Reset(){
+                    width = 30,
+                    height = 30,
+                    bluex = 0,
+                    bluey = 20,
+                    canvasRight = (can.width - width - 50),
+                    redx = 0,
+                    redy = 100,
+                    max = 20,
+                    linex = 700,
+                    liney = 0,
+                    blueWinner = false,
+                    redWinner = false;
+                    Race();
+            }
+            function Race() {
+                if (redWinner || blueWinner) {
+                    document.querySelector('#play').classList.remove('hide');                   
+                    drawText();
+                }
+                else {
+                    document.querySelector('#play').classList.add('hide');
+                    drawClear();
+                    drawLine();
+                    moveBlue();
+                    moveRed();
+                    setTimeout(Race, 100);
+                }
+            }
+
+            function drawText() {
+                if (redWinner) {
+                    ctx.fillStyle = "red";
+                    ctx.font = "16pt Helvetica";
+                    ctx.fillText("Red is the winner!", (can.width / 2) - 100, can.height / 2); //x,y 
+                }
+                else if (blueWinner) {
+                    ctx.fillStyle = "blue";
+                    ctx.font = "16pt Helvetica";
+                    ctx.fillText("Blue is the winner!", (can.width / 2) - 100, can.height / 2); //x,y 
+                }
+
+            }
+
+            function randNum(max) {
+                return Math.ceil(Math.random() * max) + 1;
+            }
+        </script>
+    </body>
+</html>
