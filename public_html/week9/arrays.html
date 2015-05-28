@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <button id="delete">Delete</button>
+        
+        
+        <script type="text/javascript">
+            
+            var arr = []; // declare an array
+            
+           // arr.push(); use the "push" function to add to the array
+                //an array can hold any type of object
+                //*********************************************
+                
+                //how to add a JSON object into an array
+                //declare a JSON variable
+                
+                
+                //json object
+                var json = {};
+                json.fname = 'Julie';
+                json.lname = 'Morriseau';
+                
+                //put variable name in the parentheses
+                arr.push(json);
+                
+                json.fname = 'Ryan';
+                json.lname = 'Paris';
+                
+                arr.push(json);
+                
+                
+                console.log(arr);
+                //**************************
+                
+                var arr2 = [];
+                
+                arr2.push({
+                    "fname" : 'Brian',
+                    "lname" : 'Smith'
+                    
+                });
+                
+                arr2.push({
+                    "fname" : 'Sandy',
+                    "lname" : 'Cider'
+                    
+                });
+                
+                console.log(arr2);
+                
+                console.log(arr2[1].lname); //access the last name of the second object in the array
+                
+                //add a new object to the array every time within a function
+                
+                function addArr(fname, lname) {
+                    var jsonData = {};
+                    jsonData.fname = fname;
+                    jsonData.lname = lname;
+                    arr2.push(jsonData);
+                    console.log(arr2);  
+                }
+                
+                function addArr2(fname, lname) {
+                    arr2.push({
+                    "fname" : 'Sandy',
+                    "lname" : 'Cider'
+                });
+                    console.log(arr2);
+                }
+                
+                addArr('Chris','Kones');               
+                addArr('Chris','Jones');               
+                addArr('Chris','Lones');
+                
+        
+        
+                addArr('Chris2','Kones');               
+                addArr('Chris2','Jones');               
+                addArr('Chris2','Lones');
+                
+                //create a button that will remove the last item in the array
+                var del = document.querySelector('#delete');
+                
+                del.addEventListener('click', remove);
+                
+                
+                function remove()
+                {
+                arr2.pop();
+                console.log(arr2);
+                }
+                
+                 
+               
+            
+            
+            </script>
+    </body>
+    
+</html>

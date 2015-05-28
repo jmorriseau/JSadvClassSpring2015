@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            #fnameErr, #lnameErr {
+                color: red;
+                font-weight: bold;
+            }
+
+            .hide {
+                display: none;
+            }
+
+            .show {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        First Name <input type="text" name="fname" />
+        <span id="fnameErr"></span>
+        Last Name <input type="text" name="lname" />
+        <span id="lnameErr"></span>
+
+        <input type="button" value="submit" />
+
+        <script type="text/javascript">
+
+            var persons = [];
+            
+
+            function addName() {
+                var fname = document.querySelector('input[name="fname"]');
+                var lname = document.querySelector('input[name="lname"]');
+                var first = document.querySelector('#fnameErr');
+                var last = document.querySelector('#lnameErr');
+                var isValid = true;
+
+                if (fname.value === "") {         
+                    first.innerHTML = "You suck! You forgot your first name.";
+                    isValid = false;
+                }
+                else {
+                    first.innerHTML = "";
+                    
+                }
+                
+                if (lname.value === "") {    
+                    last.innerHTML = "You suck! You forgot your last name.";
+                    isValid = false;
+                }
+                else {
+                    last.innerHTML = "";
+                }
+                
+                if(isValid){
+                    persons.push({
+                        "fname": fname.value,
+                        "lname": lname.value
+                    });
+                    fname.value = "";
+                    lname.value = "";
+                    
+                    console.log(persons);
+                }
+            }
+
+            var button = document.querySelector('input[type="button"]');
+            button.addEventListener("click", addName);
+
+
+        </script>
+
+    </body>
+</html>

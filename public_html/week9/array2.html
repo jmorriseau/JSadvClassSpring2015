@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+
+
+
+        </table>
+        <div></div>
+
+        <script type="text/javascript">
+            //Loop an array and create a table of data
+
+            var arr2 = [];
+            var html = "";
+
+            function addArr(fname, lname) {
+                var jsonData = {};
+                jsonData.fname = fname;
+                jsonData.lname = lname;
+                arr2.push(jsonData);
+                console.log(arr2);
+            }
+
+            addArr('Chris', 'Kones');
+            addArr('Chris', 'Jones');
+            addArr('Chris', 'Lones');
+
+
+            console.log(arr2);
+
+            for (var i = 0; i < addArr.length; i++) {
+                var first = arr2[i].fname;
+                var last = arr2[i].lname;
+
+                html += '<tr><td>' + i + "</td>" + "<td>" + first + "</td>" + "<td>" + last + '</td></tr>';
+                console.log(html);
+              
+            }
+            var table = document.querySelector('body > table > tbody');
+            table.innerHTML = html;
+
+
+
+
+        </script>
+    </body>
+</html>
