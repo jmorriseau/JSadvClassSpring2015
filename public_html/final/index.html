@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Midterm/Final</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        <form name="mainform" id="mainform" action="" class="basic-grey">
+            <div id="content">
+                <fieldset>
+                    <legend>Personal information</legend> 
+                    <label for="fullname">Name:</label> 
+                    <input id="fullname" name="name" type="text" size="30" placeholder="Full name" />
+                    <span id="fullname_err"></span>
+
+                    <label for="email">E-mail:</label> 
+                    <input id="email" name="email" type="text" size="30" placeholder="sample@email.com" />
+                    <span id="email_err"></span>
+
+                    <label for="phone">Phone:</label> 
+                    <input id="phone" name="phone" type="text" size="30" placeholder="xxx-xxx-xxxx" />
+                    <span id="phone_err"></span>
+
+                    <label for="description">Description:</label> 
+                    <textarea id="description"></textarea>
+                    <span id="description_err"></span>
+
+                    <br />
+                    <input id="saveData" type="button" value="Save Data" />
+                </fieldset>
+            </div>
+        </form>
+        <br />
+
+        <input id="deleteLastRowData" type="button" value="Delete Last Row" />
+        <input id="clearData" type="button" value="Clear All Data" />
+        <br /> <br />
+
+        <div class="CSSTableGenerator">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>E-mail</th>
+                        <th>Phone</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody id="tableData"> 
+                </tbody>
+            </table>
+        </div>
+        
+         <script type="text/javascript" src="script.js"></script>
+    </body>
+</html>
